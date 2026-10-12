@@ -1,0 +1,27 @@
+{
+  "name": "@red-cup-engineering/openai-agent-tui",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A conversational OpenAI-compatible terminal interface: Wheatstone carries the terminal and the computer inference engine carries provider policy and exchanges.",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "bin": {
+    "openai-agent-tui": "./bin/openai-agent-tui.mjs"
+  },
+  "exports": {
+    "./app": {
+      "default": "./src/app.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ],
+  "dependencies": {
+    "@red-cup-engineering/computer-inference-engine": "workspace:*",
+    "@red-cup-engineering/wheatstone": "workspace:*"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "_comment": "Copy this topology to the service or project that owns its agents and evidence. The relation engine resolves it; GnoponEmacs and organizing-with-emacs realize the returned session plan.",
+  "defaultAgentId": "agent",
+  "agents": [
+    {
+      "id": "agent",
+      "label": "Agent terminal",
+      "kind": "tui",
+      "command": "replace-with-your-agent-command",
+      "description": "A project-owned agent endpoint",
+      "streamIds": []
+    }
+  ],
+  "personas": [],
+  "sharedMemory": [],
+  "streams": []
+}

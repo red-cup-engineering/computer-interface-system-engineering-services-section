@@ -1,0 +1,53 @@
+{
+  "name": "@emsenn/app-tui",
+  "version": "0.0.0",
+  "type": "module",
+  "keywords": [
+    "decommissioned",
+    "triage"
+  ],
+  "description": "TUI application shell assembled from computing-with-terminal and computing-with-cli.",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "clean": "rm -rf dist .tmp/test-dist",
+    "build:deps": "pnpm --filter @emsenn/computing-with-cli --filter @emsenn/computing-with-terminal run build",
+    "check:local": "tsc --noEmit",
+    "check": "pnpm run build:deps && pnpm run check:local",
+    "build:local": "tsc -p tsconfig.build.json && chmod +x dist/scripts/ansi.mjs dist/scripts/render.mjs",
+    "build": "pnpm run build:deps && pnpm run build:local",
+    "rebuild": "pnpm run clean && pnpm run build"
+  },
+  "main": "./dist/app/index.mjs",
+  "types": "./dist/app/index.d.mts",
+  "bin": {
+    "tui-ansi": "./dist/scripts/ansi.mjs",
+    "tui-render": "./dist/scripts/render.mjs"
+  },
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/app/index.d.mts",
+      "import": "./dist/app/index.mjs"
+    },
+    "./app": {
+      "types": "./dist/app/index.d.mts",
+      "import": "./dist/app/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@emsenn/computing": "workspace:*",
+    "@emsenn/computing-with-cli": "workspace:*",
+    "@emsenn/computing-with-terminal": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0"
+  },
+  "sideEffects": false
+}

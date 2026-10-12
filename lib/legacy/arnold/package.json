@@ -1,0 +1,46 @@
+{
+  "name": "@561-group/arnold",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "arnold — a generic, composable TUI framework over pure node (builtins only, no heavy deps). It lights up a SETTLED SECTION in the terminal: the terminal analogue of shp (the HTML projector at computer/L8). A screen/cell buffer with a DIFFED render (only changed cells repaint), box/flex layout, core widgets (text, list, table, input, status line), raw-mode keyboard input + an event loop, and ANSI styling. CRITICAL: a clean PROJECTOR seam — a pure project(settledSection) -> terminal frame mapping a @561-group/computer settled section {affirmed,denied,contradicted} to a renderable frame, rendering ⊤ as CONTESTED (both sides + both witnesses shown, no winner picked), ⊥ as pending. THE LAW: ⊤ shown, never hidden. The projector boundary is kept clean so it can later be PROMOTED into computer/ as the terminal projector.",
+  "keywords": [
+    "tui",
+    "terminal",
+    "ansi",
+    "projection",
+    "paraconsistent",
+    "settled-section",
+    "bilattice",
+    "561-group"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emsenn/561-group.git",
+    "directory": "apps/tools/arnold"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "arnold": "./scripts/arnold.mjs"
+  },
+  "scripts": {
+    "test": "node tests/prove-buffer.mjs && node tests/prove-render.mjs && node tests/prove-layout.mjs && node tests/prove-input.mjs && node tests/prove-widgets.mjs && node tests/prove-projector.mjs",
+    "demo": "node scripts/arnold.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./ansi": "./src/ansi.mjs",
+    "./buffer": "./src/buffer.mjs",
+    "./render": "./src/render.mjs",
+    "./layout": "./src/layout.mjs",
+    "./widgets": "./src/widgets.mjs",
+    "./input": "./src/input.mjs",
+    "./projector": "./src/projector.mjs",
+    "./app": "./src/app.mjs",
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@561-group/computer": "workspace:*"
+  }
+}

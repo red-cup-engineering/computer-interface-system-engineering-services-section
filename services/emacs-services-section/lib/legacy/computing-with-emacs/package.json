@@ -1,0 +1,54 @@
+{
+  "name": "@emsenn/computing-with-emacs",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "description": "Computing with Emacs as a boundary system: the cockpit topology — agent endpoints, monitorable context/hook streams, and the resolved pane plan — modeled as data, projected to CLI/OpenAPI/MCP/web from one dispatcher, and realized into Emacs windows by a generic elisp consumer. Environment specifics live in a cockpit config, never in code.",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "clean": "rm -rf dist .tmp",
+    "check": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.scripts.json && chmod +x dist/scripts/*.mjs",
+    "test": "node --test \"test/*.test.mjs\"",
+    "verify": "npm run check && npm run build",
+    "prepack": "npm run rebuild",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "bin": {
+    "cwe": "./dist/scripts/cwe.mjs",
+    "cwe-serve": "./dist/scripts/cwe-serve.mjs"
+  },
+  "files": [
+    "dist",
+    "emacs",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "dependencies": {
+    "@emsenn/relating": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./cockpit": {
+      "types": "./dist/cockpit/index.d.mts",
+      "import": "./dist/cockpit/index.mjs"
+    },
+    "./emacs/cwe-cockpit.el": "./emacs/cwe-cockpit.el",
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "decommissioned"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@red-cup-engineering/eavt-terminal-projectors",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "EAVT settled-section projections for cell and raster terminal interfaces.",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "eavt-terminal-cell-demo": "./scripts/cell-demo.mjs",
+    "eavt-terminal-raster-demo": "./scripts/raster-demo.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/prove-*.mjs"
+  },
+  "exports": {
+    "./cell": {
+      "default": "./src/cell.mjs"
+    },
+    "./raster": {
+      "default": "./src/raster.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@red-cup-engineering/arnold": "workspace:*",
+    "@red-cup-engineering/daleske": "workspace:*",
+    "@red-cup-engineering/eavt-services-section": "workspace:*"
+  }
+}

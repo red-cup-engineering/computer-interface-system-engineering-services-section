@@ -1,0 +1,59 @@
+{
+  "name": "@red-cup-engineering/abrash",
+  "version": "0.1.1",
+  "type": "module",
+  "description": "abrash — a pixel/3D GAME ENGINE: a software raycaster (grid-DDA) over a federated voxel world into an RGBA framebuffer, a tick/realtime loop with NO global clock (aperiodic settling), AABB collision against the voxel grid, and a federated-trace WORLD substrate: a 'place' is a subject whose state is the FOLD of predications, unvisited = ⊥, disagreement = ⊤ HELD with both witnesses. THE BILATTICE READOUT in pixels: a ⊤ voxel renders DOUBLED and SHIVERING (driven by tick phase, not RNG, replay-identical), a ⊥ voxel is dim fog, an f voxel is a dark wreck. THE LAW: ⊤ held, append-only trace, evidence linear. Named for Michael Abrash (Quake's software renderer). Browser-portable: the framebuffer's RGBA raster is an ImageData-shaped Uint8ClampedArray a <canvas> can putImageData directly, and a headless build (Node, tests) reads the identical surface with zero DOM dependency.",
+  "keywords": [
+    "game-engine",
+    "raycaster",
+    "software-3d",
+    "pixel",
+    "voxel",
+    "federation",
+    "paraconsistent",
+    "bilattice",
+    "settled-section",
+    "561-group"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    "./grid": {
+      "default": "./src/grid.mjs"
+    },
+    "./world": {
+      "default": "./src/world.mjs"
+    },
+    "./raycaster": {
+      "default": "./src/raycaster.mjs"
+    },
+    "./framebuffer": {
+      "default": "./src/framebuffer.mjs"
+    },
+    "./collision": {
+      "default": "./src/collision.mjs"
+    },
+    "./engine": {
+      "default": "./src/engine.mjs"
+    },
+    "./math": {
+      "default": "./src/math.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "world",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "dependencies": {
+    "@red-cup-engineering/computer": "workspace:*",
+    "@red-cup-engineering/eavt-services-section": "workspace:*",
+    "@red-cup-engineering/computer-data-engineering-services-section": "workspace:*"
+  },
+  "scripts": {
+    "test": "node --test src/*.test.mjs"
+  }
+}

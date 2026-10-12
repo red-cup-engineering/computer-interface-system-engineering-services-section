@@ -1,0 +1,10 @@
+{
+  "id": "knowledge-vault",
+  "name": "Knowledge Vault",
+  "version": "0.0.0",
+  "minAppVersion": "1.7.2",
+  "description": "Mounts a content knowledge vault and exposes governed agentic memory tooling inside Obsidian.",
+  "author": "561 Group",
+  "authorUrl": "https://561.group",
+  "isDesktopOnly": true
+}

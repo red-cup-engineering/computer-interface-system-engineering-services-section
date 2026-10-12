@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "_comment": "GnoponEmacs relation-cockpit data. Agents are external chat CLIs/TUIs; streams are project-relative evidence logs. The relation engine resolves this data; organizing-with-emacs realizes its plan in Emacs.",
+  "defaultAgentId": "claude",
+  "agents": [
+    {
+      "id": "claude",
+      "label": "Claude CLI",
+      "kind": "tui",
+      "command": "claude",
+      "description": "Anthropic Claude Code CLI",
+      "streamIds": ["context", "hooks", "messages"],
+      "identity": {
+        "sessionArgs": ["--session-id", "{session}"],
+        "nameArgs": ["--name", "{persona}"],
+        "embodimentArgs": ["--append-system-prompt", "{embodiment}"],
+        "homeEnv": "CLAUDE_CONFIG_DIR",
+        "homeTemplate": "{cwd}/apps/gnoponemacs/var/characters/{slug}",
+        "memoryFile": "CLAUDE.md"
+      }
+    },
+    {
+      "id": "codex",
+      "label": "Codex CLI",
+      "kind": "tui",
+      "command": "codex",
+      "description": "OpenAI Codex CLI",
+      "streamIds": ["context", "hooks", "messages"]
+    },
+    {
+      "id": "openai-tui",
+      "label": "OpenAI Agent TUI",
+      "kind": "tui",
+      "command": "openai-agent-tui",
+      "description": "OpenAI-compatible agent console (@red-cup-engineering/openai-agent-tui)",
+      "streamIds": ["context", "hooks", "messages"]
+    }
+  ],
+  "personas": [
+    { "name": "Aagaard", "color": "#1f9c8a", "glyph": "◆", "bio": "Steady and infrastructural; keeps the foundations honest." },
+    { "name": "Koios", "color": "#1c7ed6", "glyph": "★", "bio": "Inquisitive and far-seeing; chases the underlying why." },
+    { "name": "Marshian", "color": "#e8590c", "glyph": "▲", "bio": "Restless and exploratory; pushes into unmapped edges." },
+    { "name": "Essiebee", "color": "#b5179e", "glyph": "✦", "bio": "Warm and connective; tends relationships between parts." },
+    { "name": "Sigmund", "color": "#7048e8", "glyph": "⬢", "bio": "Analytic and interpretive; reads the latent structure." },
+    { "name": "Michael", "color": "#2f9e44", "glyph": "❧", "bio": "Grounded and careful; favors durable, well-tended work." },
+    { "name": "Vexler", "color": "#e03131", "glyph": "❂", "bio": "Sharp and adversarial; stress-tests every claim." },
+    { "name": "Emsenn", "color": "#c2920a", "glyph": "✸", "bio": "Synthetic and authorial; weaves the whole into voice." }
+  ],
+  "sharedMemory": ["apps/gnoponemacs/var/characters/_shared/MEMORY.md"],
+  "streams": [
+    {
+      "id": "context",
+      "label": "Context Injections",
+      "kind": "context-injection",
+      "path": "sites/bare-cedar-fog.561.group/data/logs/context.jsonl",
+      "description": "Operations Manifold suit/context admitted into each session and prompt"
+    },
+    {
+      "id": "hooks",
+      "label": "Hook Calls / Operations",
+      "kind": "hook-call",
+      "path": "sites/bare-cedar-fog.561.group/data/logs/operations.jsonl",
+      "description": "Durable operation + hook events recorded by ingest-hook.mjs"
+    },
+    {
+      "id": "messages",
+      "label": "Messages",
+      "kind": "message",
+      "path": "sites/bare-cedar-fog.561.group/data/logs/messages.jsonl",
+      "description": "Human/agent/tool/endpoint messages bound to sessions"
+    }
+  ]
+}

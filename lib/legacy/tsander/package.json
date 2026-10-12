@@ -1,0 +1,45 @@
+{
+  "name": "@561-group/tsander",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "tsander — the GAME ENGINE on @561-group/arnold: terminal/wireframe games (the engine under OKAGA's space-flight design). Three engine-level concerns, lifted from computer/docs/dev/notes/tsander-design.md: (1) the federated-trace WORLD substrate — a 'place' is a subject whose state is the fold of predications about it, unvisited = ⊥, disagreement = ⊤ HELD with both witnesses; (2) a WIREFRAME renderer — 3D vectors projected to Arnold cells, where a ⊤ object renders DOUBLED and JITTERING (the bilattice readout, driven by tick phase not RNG, replay-identical); (3) a tick/realtime loop with NO global clock (aperiodic settling), and a hook to run a unit's flight-'computer' program in @561-group/horsetail (eval = settle; (if ⊤ …) runs BOTH arms held contested). THE LAW: ⊤ held, append-only trace, evidence linear. Named Tsander←Tsander as Bussard←Bussard. Built on computer's substrate/federation + arnold's terminal; games ride this engine.",
+  "keywords": [
+    "game-engine",
+    "wireframe",
+    "terminal",
+    "federation",
+    "paraconsistent",
+    "bilattice",
+    "settled-section",
+    "horsetail",
+    "561-group"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emsenn/561-group.git",
+    "directory": "apps/tools/tsander"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "tsander": "./scripts/tsander.mjs"
+  },
+  "scripts": {
+    "test": "node tests/math.test.mjs && node tests/world.test.mjs && node tests/wireframe.test.mjs && node tests/horsetail.test.mjs && node tests/engine.test.mjs",
+    "demo": "node scripts/tsander.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./world": "./src/world.mjs",
+    "./wireframe": "./src/wireframe.mjs",
+    "./horsetail": "./src/horsetail-hook.mjs",
+    "./engine": "./src/engine.mjs",
+    "./math": "./src/math.mjs",
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@561-group/arnold": "workspace:*",
+    "@561-group/computer": "workspace:*"
+  }
+}

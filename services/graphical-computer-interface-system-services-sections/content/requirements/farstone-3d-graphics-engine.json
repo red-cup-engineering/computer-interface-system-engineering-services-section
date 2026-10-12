@@ -1,0 +1,177 @@
+{
+  "id": "farstone-3d-graphics-engine",
+  "name": "The Group's bespoke 3D graphics engine, under Farstone's pressure",
+  "kind": "requirement",
+  "raised-by": "emsenn",
+  "asks": "Specifically we want to do this by working hard today on Farstone, which is meant to be our browser-based MMORPG/MUD/whatever-else-I-want-in-a-game.\n\n1) I want to start making it so folk can download and run Farstone. Like we need to think much more like \"okay this is a game we can like, sell, sell server access to.\"\n2) Here's the weirdest part: I want us to start working toward Farstone having a full-on game like Kerbal Space Program in it, but obviously, we want to beat Kerbal Space Program using everything the world has learned between when it was designed and now, and critically, use our own math as much as we can to help us.\n3) That puts hellllla pressure on our bespoke 3d graphics engine we're supposed to be building, which is great\n4) All this should put pressure upstream into the code we already have and\n5) it should also put pressure into our agentic orchestration stuff, so that this happens more orchestrated: agents work on research, then specs, then SAS, HLD, LLD, actual engineering, as part of a rich endeavor, a fleet or swarm, using-and-improving our best science and engineering on agentic work and governance\n6) this also should put pressure on how we store data (like, write it, the format) and addressing, to normalize those around best practices and how we store data like, keep it persisted on somenoe's harddrive, preferable at as little cost to us as possible\n7) same for CPU, networking, ram: better profiling and autonomous RSI is great\n8) find our theories on EDA, protein folding, and those forms of software design, and go \"there's probably equally weird and deep theory for everything and it's my job as ringleader to coordinate finding that information and getting it to the folk who need it\"\n\nI know that was a lot: the goal you should aim toward is beating Kerbal Space Program with Farstone (I'm picturing orbital launch platforms being one kind of ship that folk can build)?\n\nALong the way you should do everything I mentioned, while making sure that you improve Holofoam to be able to use it as our physics simulation engine (right now it's kind of biased toward web browser toy), then we have like i think durante, abrash, so many other engines for games, we need to start actually using them, and having them be in proper repo, using proper upstream software (everything should be SignCells, at the end of the day, that's what lets this foam and semiotics stuff happen everywhere).\n\nWe should also make sure that the MetroPlat servers run on Bare Cedar Fog and Cold Red Gate also continue to earn any improvements other software work gets us, i.e. I would love richer graphical representations of the 561 Group Semioverse (the content addressed foam of semiotic cells the 561 Group has constructed/recorded.)\n\nAll this is early alpha vibeslop and my prompt talks about code in the way it SHOULD be, even if it currently isn't that way; you align.",
+  "met-when": [
+    {
+      "cell": "farstone-3d:scene-renders",
+      "target": "held",
+      "command": "sh -c 'ls lib/emsenn/services/561-group/services/engineering-services-section/services/computer-engineering-services-section/services/computer-systems-engineering-services-section/services/computer-interface-system-services-section/services/graphical-computer-interface-system-services-sections/apps/abrash/test/*orbit* >/dev/null 2>&1'",
+      "expected-exit": 0
+    },
+    {
+      "cell": "farstone-3d:engines-in-own-repos",
+      "target": "held",
+      "command": "sh -c 'git -C /home/emsenn/info ls-files --stage -- lib/emsenn/services/561-group/services/engineering-services-section/services/computer-engineering-services-section/services/computer-systems-engineering-services-section/services/computer-interface-system-services-section/services/graphical-computer-interface-system-services-sections/apps | grep -c \"^160000\"'",
+      "expected-exit": 0
+    },
+    {
+      "cell": "farstone-3d:farstone-consumes",
+      "target": "held",
+      "command": "sh -c 'grep -q \"abrash\" lib/emsenn/services/561-group/services/public-services-section/services/public-media-services-section/services/public-games-services-section/services/public-web-games-services-section/sites/farstone.561.group/package.json'",
+      "expected-exit": 0
+    },
+    {
+      "cell": "farstone-3d:semioverse-view",
+      "target": "held",
+      "command": "sh -c 'ls lib/emsenn/services/561-group/services/engineering-services-section/services/computer-engineering-services-section/services/computer-systems-engineering-services-section/services/agent-computer-system-engineering-services-section/services/multi-agent-computer-system-engineering-services-section/services/multi-agent-computer-platform-engineering-services-section/services/agentic-enterprise-computer-platform-engineering-services-section/apps/metroplat/test/*semioverse*view* >/dev/null 2>&1'",
+      "expected-exit": 0
+    }
+  ],
+  "tier": "major",
+  "x-provenance": {
+    "recorded-by": "program-manager (bare-cedar-fog-claude, dispatched under the Leader standing direction of 2026-10-09)",
+    "recorded-on": "2026-10-09",
+    "customer": "urn:leader:emsenn",
+    "basis": "Opening prompt of the Leader on Bare Cedar Fog, carried as a requirement record by the board-requirement-intake skill. The raised-by field and asks are the Leader's own words; the requirements below are the program manager's EARS rendering of what those words ask, and carry no scope the words do not.",
+    "board-opening": {
+      "speech-act": "request",
+      "need": "The Group's own 3D graphics engine renders a spaceflight scene for Farstone, the Group's other engines are in their own repositories on proper upstream packages, and the same engine draws the Semioverse.",
+      "scope": [
+        "section:services/engineering-services-section/services/computer-engineering-services-section/services/computer-systems-engineering-services-section/services/computer-interface-system-services-section/services/graphical-computer-interface-system-services-sections"
+      ],
+      "requirements": [
+        {
+          "id": "R1",
+          "says": "The 3D graphics engine shall render a scene of a planet, a ship and its orbit for Farstone.",
+          "class": "functional",
+          "moscow": "must",
+          "rationale": "The Leader: the spaceflight game \"puts hellllla pressure on our bespoke 3d graphics engine\"."
+        },
+        {
+          "id": "R2",
+          "says": "Each of the Group's game engines (Durante, Abrash and the others it holds) shall live in its own repository and depend on its upstream packages.",
+          "class": "constraint",
+          "moscow": "must",
+          "rationale": "The Leader: \"having them be in proper repo, using proper upstream software\"."
+        },
+        {
+          "id": "R3",
+          "says": "Farstone shall consume the 3D graphics engine as a package and carry no renderer of its own.",
+          "class": "constraint",
+          "moscow": "must",
+          "rationale": "Rule science-engineering-operations-parameterize-in-order; use-and-improve-the-groups-own-software."
+        },
+        {
+          "id": "R4",
+          "says": "Where the 3D graphics engine gains a renderer, the MetroPlat server's view of the Semioverse shall use it to draw the foam of semiotic cells.",
+          "class": "functional",
+          "moscow": "should",
+          "rationale": "The Leader: \"richer graphical representations of the 561 Group Semioverse\"."
+        }
+      ],
+      "conditions": [
+        {
+          "id": "farstone-3d:scene-renders",
+          "says": "A test renders the orbital scene.",
+          "method": "assay",
+          "verifies": [
+            "R1"
+          ]
+        },
+        {
+          "id": "farstone-3d:engines-in-own-repos",
+          "says": "The engine apps are gitlinks to their own repositories.",
+          "method": "assay",
+          "verifies": [
+            "R2"
+          ]
+        },
+        {
+          "id": "farstone-3d:farstone-consumes",
+          "says": "Farstone depends on the engine package.",
+          "method": "assay",
+          "verifies": [
+            "R3"
+          ]
+        },
+        {
+          "id": "farstone-3d:semioverse-view",
+          "says": "A test covers the Semioverse view.",
+          "method": "assay",
+          "verifies": [
+            "R4"
+          ]
+        }
+      ],
+      "context": "The prompt has eight numbered wishes and a closing goal. Items 1 and 2 and the closing goal are the product (download, sell, beat Kerbal Space Program). Item 3 and the engines paragraph are the graphics engine and Holofoam. Items 4 to 8 are pressure on the Group's own methods and are carried by one request in the 561 Group section. The Leader's last paragraph: \"All this is early alpha vibeslop and my prompt talks about code in the way it SHOULD be, even if it currently isn't that way; you align.\" The first workflow run on this prompt was judged a \"pretty bad interpretation\": the session ran its subagents concurrently so \"they can't learn from each other\", and the Leader asked for research first, reasoning second, engineering third.",
+      "sources": [
+        {
+          "session": "claude session 0fbf24cb-8855-48f1-9c7e-852e0b4fb748",
+          "at-utc": "2026-10-08T16:44:52",
+          "words": "That puts hellllla pressure on our bespoke 3d graphics engine we're supposed to be building, which is great",
+          "address": "ni:///sha-256;nX48bLCnuNp5CmJtvTkkWMiGVq0Qx4iE3B0bKTQvRVc"
+        },
+        {
+          "session": "claude session 0fbf24cb-8855-48f1-9c7e-852e0b4fb748",
+          "at-utc": "2026-10-08T16:44:52",
+          "words": "then we have like i think durante, abrash, so many other engines for games, we need to start actually using them, and having them be in proper repo, using proper upstream software",
+          "address": "ni:///sha-256;nX48bLCnuNp5CmJtvTkkWMiGVq0Qx4iE3B0bKTQvRVc"
+        },
+        {
+          "session": "claude session 0fbf24cb-8855-48f1-9c7e-852e0b4fb748",
+          "at-utc": "2026-10-08T16:44:52",
+          "words": "I would love richer graphical representations of the 561 Group Semioverse (the content addressed foam of semiotic cells the 561 Group has constructed/recorded.)",
+          "address": "ni:///sha-256;nX48bLCnuNp5CmJtvTkkWMiGVq0Qx4iE3B0bKTQvRVc"
+        }
+      ],
+      "serves": [
+        "farstone-orbital-flight-game-beyond-kerbal-space-program"
+      ],
+      "after": [],
+      "traces": []
+    },
+    "held-research": [
+      "science-services-section/services/social-science-services-section/services/social-theory-science-services-section/services/ludics-science-services-section/services/game-ludics-services-section/content/text/documents/articles/notes/recovered/2026-08-19-note-on-farstone-qbn-design.md",
+      "science-services-section/services/social-science-services-section/services/social-theory-science-services-section/services/ludics-science-services-section/services/game-ludics-services-section/content/text/documents/articles/notes/recovered/planned/2026-08-19-note-on-farstone-legacy-status.md",
+      "engineering-services-section/services/computer-engineering-services-section/services/computer-systems-engineering-services-section/services/computer-game-system-services-section/services/computer-mud-engineering-services-section",
+      "public-services-section/services/public-media-services-section/services/public-games-services-section/services/public-web-games-services-section/sites/farstone.561.group",
+      "engineering-services-section/content/text/documents/articles/notes/2026/10/09/2026-10-09-note-on-receiving-the-open-pull-requests.md",
+      "repo:causeway-services/farstone (farstone #7, \"data gate defaulting to do-not-place\", is cited in the 2026-10-09 receiving note, line 132, as a good form)",
+      "engineering-services-section/services/computer-engineering-services-section/services/computer-systems-engineering-services-section/services/computer-interface-system-services-section/services/graphical-computer-interface-system-services-sections/apps/abrash/README.md",
+      "science-services-section/services/social-science-services-section/services/social-theory-science-services-section/services/ludics-science-services-section/services/game-ludics-services-section/content/text/documents/articles/notes/recovered/planned/2026-08-19-note-on-durante.md"
+    ],
+    "not-held": "The graphics engine the Leader calls \"bespoke\" is not named in the corpus; the Abrash app is the nearest held (graphical-computer-interface-system-services-sections/apps/abrash). Durante is held as a social-science note, not as an engine.",
+    "unresolved-authority": "Which held engine is the bespoke 3D engine is unresolved; the program manager uses Abrash as the nearest and does not decide the architecture (the system architect does).",
+    "engine-named-by-the-leader": {
+      "engine": "QwzSpace (computer-web-engineering-services-section/apps/qwzspace)",
+      "words": [
+        {
+          "address": "ni:///sha-256;aPNzPkxbB3H0JP2jx5Tral6u9elBoBfbzyPq36Bj4U4",
+          "at-utc": "2026-10-02T19:14:34Z",
+          "words": "We don't want three.js we want our own 3d engine that is what qwzspace is meant to be"
+        },
+        {
+          "address": "ni:///sha-256;sDzm9B89oVD9HXiHG4mRVAJHrJJzP9tfJ9zd0nbxZrM",
+          "at-utc": "2026-10-03T00:16:06Z",
+          "words": "Both are one game client on our own engine, qwzspace: 3D first, then 2D, then text as fallbacks. No three.js or any other third-party 3D library."
+        }
+      ],
+      "corrects": "Where this record says the bespoke engine is not named or points to Abrash, the Leader's words above name QwzSpace as the 3D engine; Abrash and Durante remain game engines under R2.",
+      "recorded-by": "pass farstone-ksp-1, 2026-10-10"
+    },
+    "utterances": [
+      "ni:///sha-256;nX48bLCnuNp5CmJtvTkkWMiGVq0Qx4iE3B0bKTQvRVc"
+    ],
+    "related": [
+      "farstone-flagship-world"
+    ],
+    "sign-cell": {
+      "type": "emsenn/schema/requirement",
+      "mark": "ni:///sha-256;JDhdENktDydAUC4ky9hF8CtUtrZzESyJiRR3zUDRSSw",
+      "cell": "ni:///sha-256;opOIgATjg5CHijun21QBGAY5O_g4MZr667qUj4xRvEM"
+    }
+  }
+}

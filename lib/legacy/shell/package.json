@@ -1,0 +1,30 @@
+{
+  "name": "@561-group/shell",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "shell — the first userspace interface app for the 561-group computer: the SETTLING SHELL/REPL. Not read-eval-print but read -> SETTLE -> project -> loop. A command is a PREDICATION appended to the trace; the world SETTLES (substrate.settle to a fixed point); the output is the projected settled SECTION, with ⊤ SHOWN (contested facts displayed, both witnesses) and ⊥ shown as pending. Login is a challenge-response PLAY via computer/principal; a session is a play; you act AS a principal; may() gates actions as a held charge whose ⊤-dispute is surfaced, not denied. A THIN DRIVER: all logic stays in @561-group/computer's tools (substrate fold/settle/section/relate, distribution/governance governAction, process-runtime allocation, principal); the shell only reads/appends/settles/projects EAVT rows over a trace root. NOT part of computer proper — userspace, on top of the kernel+tools.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emsenn/561-group.git",
+    "directory": "apps/interface/shell"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "shell": "./scripts/shell-cli.mjs"
+  },
+  "scripts": {
+    "test": "node tests/shell.test.mjs"
+  },
+  "exports": {
+    ".": "./scripts/shell-cli.mjs",
+    "./shell": "./scripts/shell-cli.mjs",
+    "./repl": "./scripts/repl.mjs",
+    "./principal": "./scripts/principal.mjs",
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@red-cup-engineering/metrologic": "file:../../../../computer-math-system-services-section/apps/metrologic"
+  }
+}

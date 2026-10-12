@@ -1,0 +1,35 @@
+{
+  "name": "@emsenn/gnoponemacs",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "GnoponEmacs, a Markdown-native Emacs cockpit for Rust, Node, GitHub, project memory, and agentic programming.",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "start": "node scripts/gnoponemacs.mjs",
+    "check": "node scripts/check.mjs",
+    "repro": "node scripts/repro-check.mjs",
+    "benchmark": "node scripts/startup-benchmark.mjs",
+    "path": "node scripts/gnoponemacs.mjs path",
+    "manifest": "node scripts/gnoponemacs.mjs manifest",
+    "catalog": "node scripts/gnoponemacs.mjs catalog",
+    "doctor": "node scripts/gnoponemacs.mjs doctor"
+  },
+  "bin": {
+    "gnoponemacs": "./scripts/gnoponemacs.mjs"
+  },
+  "files": [
+    "README.md",
+    "early-init.el",
+    "flake.nix",
+    "guix",
+    "init.el",
+    "scripts",
+    "lisp",
+    "scripts",
+    "tests",
+    "package.json"
+  ],
+  "sideEffects": false
+}

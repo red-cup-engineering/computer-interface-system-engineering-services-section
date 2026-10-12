@@ -1,0 +1,7 @@
+/build/
+/eln-cache/
+/elpa/
+/local.el
+/package-quickstart.el
+/package-quickstart.elc
+/var/

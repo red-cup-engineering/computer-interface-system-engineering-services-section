@@ -1,0 +1,88 @@
+.knowledge-vault-output {
+  font-variant-numeric: tabular-nums;
+}
+
+.knowledge-vault-cockpit {
+  padding: 12px;
+}
+
+.knowledge-vault-cockpit h2,
+.knowledge-vault-cockpit h3 {
+  margin-top: 0;
+}
+
+.knowledge-vault-cockpit-summary {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 12px;
+}
+
+.knowledge-vault-cockpit-summary p {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.knowledge-vault-active-note {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.knowledge-vault-runtime-status {
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  margin: 8px 0 12px;
+  padding: 8px;
+}
+
+.knowledge-vault-active-note p,
+.knowledge-vault-runtime-status p {
+  margin: 0 0 6px;
+  overflow-wrap: anywhere;
+}
+
+.knowledge-vault-chat-transcript {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  margin: 8px 0 12px;
+  padding: 8px;
+}
+
+.knowledge-vault-chat-transcript p {
+  margin: 0 0 6px;
+}
+
+.knowledge-vault-chat-message {
+  margin: 8px 0;
+}
+
+.knowledge-vault-chat-message pre,
+.knowledge-vault-live-output {
+  background: var(--background-secondary);
+  border-radius: 4px;
+  margin: 4px 0 0;
+  max-height: 240px;
+  overflow: auto;
+  padding: 6px;
+  white-space: pre-wrap;
+}
+
+.knowledge-vault-chat-user strong {
+  color: var(--text-accent);
+}
+
+.knowledge-vault-chat-assistant strong {
+  color: var(--text-success);
+}
+
+.knowledge-vault-switch-title {
+  font-weight: var(--font-semibold);
+}
+
+.knowledge-vault-switch-path,
+.knowledge-vault-switch-detail {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  overflow-wrap: anywhere;
+}

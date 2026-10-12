@@ -1,0 +1,9 @@
+{
+  "name": "@emsenn/vibemacs",
+  "version": "0.1.0",
+  "description": "A next-generation Emacs configuration for agentic programmers.",
+  "scripts": {
+    "check": "pnpm run compile",
+    "compile": "emacs -Q --batch -L lisp --eval '(setq byte-compile-dest-file-function (lambda (_) (make-temp-file \"vibemacs-byte-compile\" nil \".elc\")))' -f batch-byte-compile lisp/*.el"
+  }
+}

@@ -1,0 +1,820 @@
+#+title: emsenn's emacsen
+
+* Domains
+:PROPERTIES:
+:header-args: :noweb yes
+:END:
+** Backend
+*** Org-mode
+**** General configuration
+***** Org macros
+- =nl= :: Inserts a newline; for use in-file macros.
+
+#+name: general-org-macros
+#+begin_src elisp
+  ("nl" . "(eval \"\\n\")")
+#+end_src
+** Beading
+This section deals with the part of my Emacsen related to beading. Mostly, that means capture templates for tracking my inventory, at this point.
+*** Beading capture templates
+#+name: beading-capture-templates
+#+begin_src elisp
+  ("b" "Beading")
+  <<beading-acquisition-capture-templates>>
+#+end_src
+**** Acquisition
+#+name: beading-acquisition-capture-templates
+#+begin_src elisp
+  ("ba" "Acquisition")
+  <<bead-acquisition-capture-templates>>
+#+end_src
+***** Bead
+#+name: bead-acquisition-capture-templates
+#+begin_src elisp
+  ("bab" "Bead")
+  <<bead-purchase-capture-templates>>
+#+end_src
+****** Purchase
+#+name: bead-purchase-capture-templates
+#+begin_src elisp
+  ("babp" "Purchase")
+  <<seed-bead-purchase-capture-templates>>
+#+end_src
+******* Seed bead
+#+name: seed-bead-purchase-capture-templates
+#+begin_src elisp
+  ("babps" "Seed" plain
+   (file+datetree "~/org/ops-PRIVATE/ledger.org")
+   "%^{DATE} open Assets:Inventory:Beads:Seed:%^{SIZE|Six|Eight|Nine|Ten|Eleven|Fifteen|Eighteen}:%^{TYPE|Delica|Toho|Rocaille}:%^{FINISH|Opaque|Aurora|Matte|MatteAurora|Metallic|OpaqueAurora|OpaqueLuster|TransAurora|TransLuster|TransMatte|TransMatteAurora|Translucent}:%^{COLOR}\n%\\1 * \"Purchase: size %\\2 %\\3 seed bead in %\\4 %\\5\"\n  Assets:Inventory:Beads:Seed:%\\2:%\\3:%\\4:%\\5  %^{GRAMS} GRAM {{%^{COST} USD}}\n  Expenses:Beads\n")
+#+end_src
+** Digital Garden
+*** References
+#+name: dg-references-org-mode-project
+#+begin_src elisp
+  ("dg-ref" :components ("dg-ref-all" "dg-ref-lib" "dg-ref-timeline"))
+  ("dg-ref-all"
+   <<emsenn-net-base-config>>
+  :base-directory "~/org/ref/"
+  :publishing-directory "~/emsenn-net/ref"
+  :html-preamble ,emsenn-net-org-html-subdir-preamble
+  :makeindex t)
+  <<dg-library-org-mode-project>>
+  <<dg-timeline-org-mode-project>>
+#+end_src
+
+#+name: dg-references-capture-templates
+#+begin_src elisp
+  ("r" "References")
+  <<dg-library-capture-templates>>
+#+end_src
+**** Library
+***** Library Org-mode project
+#+name: dg-library-org-mode-project
+#+begin_src elisp
+  ("dg-ref-lib"
+   <<emsenn-net-base-config>>
+   :base-directory "~/org/ref/lib/"
+   :publishing-directory "~/emsenn-net/ref/lib"
+   :html-preamble ,emsenn-net-org-html-subsubdir-preamble
+   :makeindex t)
+#+end_src
+***** Library capture templates
+#+name: dg-library-capture-templates
+#+begin_src elisp
+  ("rl" "Library")
+  <<dg-web-resource-capture-templates>>
+  <<dg-digital-document-capture-template>>
+#+end_src
+****** New web resource
+#+name: dg-web-resource-capture-templates
+#+begin_src elisp
+  ("rlw" "Web resource")
+  <<dg-web-article-capture-template>>
+  <<dg-web-thread-capture-template>>
+#+end_src
+******* New web article
+#+name: dg-web-article-capture-template
+#+begin_src elisp
+  ("rlwa" "Article" entry
+   (file+olp "~/org/ref/lib/index.org" "Bibliography" "Web Resources" "Articles")
+   "* %^{SHORT-TITLE}\n:PROPERTIES:\n:lib-item-author: %^{AUTHOR}\n:lib-item-title: %^{FULL-TITLE}\n:lib-item-source:%^{SOURCE}\n:lib-item-publish-date: %^{PUBLISH-DATE}\n:lib-item-capture-date: %^{CAPTURE-DATE}\n:lib-item-brief: %^{BRIEF}\n:lib-item-topics: %^{TOPICS}\n:CUSTOM_ID: %^{ID}\n:END:\n#+index: %?!\"%\\1\" by %\\2\n\n{{{lib-web-article-table}}}")
+#+end_src
+******* New thread
+#+name: dg-web-thread-capture-template
+#+begin_src elisp
+  ("rlwt" "Thread" entry
+   (file+olp "~/org/ref/lib/index.org" "Bibliography" "Web Resources" "Threads")
+   "* %^{AUTHOR}: %^{TITLE}\n:PROPERTIES:\n:lib-item-author: %\\1\n:lib-item-source: %^{SOURCE}\n:lib-item-publish-date: %^{PUBLISH-DATE}\n:lib-item-capture-date: %^{CAPTURE-DATE}\n:lib-item-brief: %\\2\n:lib-item-topics: %^{TOPICS}\n:CUSTOM_ID: %^{ID}\n:END:\n#+index: %?!\"%\\2\" by %\\1\n\n{{{lib-web-thread-table}}}")
+#+end_src
+****** New digital document
+#+name: dg-digital-document-capture-template
+#+begin_src elisp
+  ("rld" "Digital document" entry
+   (file+olp "~/org/ref/lib/index.org" "Bibliography" "Digital Documents")
+   "* %^{SHORT-TITLE}\n:PROPERTIES:\n:lib-item-author: %^{AUTHOR}\n:lib-item-title:%^{FULL-TITLE}\n:lib-item-publish-date: %^{PUBLISH-DATE}\n:lib-item-capture-date: %^{CAPTURE-DATE}\n:lib-item-brief: %\\2\n:lib-item-topics: %^{TOPICS}\n:CUSTOM_ID: %^{ID}\n:END:\n#+index: %?\"%\\1\" by %\\2\n\n{{{lib-web-thread-table}}}")
+#+end_src
+****** New book
+******* New acquisition
+******* New want
+**** Timeline
+***** Timeline Org-mode project
+#+name: dg-timeline-org-mode-project
+#+begin_src elisp
+  ("dg-ref-timeline"
+   <<emsenn-net-base-config>>
+   :base-directory "~/org/ref/timeline/"
+   :publishing-directory "~/emsenn-net/ref/timeline"
+   :html-preamble ,emsenn-net-org-html-subsubdir-preamble
+   :makeindex t)
+#+end_src
+
+*** Logs
+**** Weather
+***** Weather log capture templates
+* Old stuff
+** Plans
+*** Soon
+- Update emsenn-net CSS
+- Capture templates for timeline events
+*** Later
+- Segregate the Teraum stuff better:
+  - Don't include Teraum stuff in the master index.
+  - Different CSS?
+*** Someday
+** Code
+:PROPERTIES:
+:header-args: :noweb yes
+:END:
+*** Package Management
+
+#+name: package-management
+#+begin_src elisp
+  (defvar straight-install-script-path
+    "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el")
+  
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+	(bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+      (url-retrieve-synchronously straight-install-script-path
+       'silent 'inhibit-cookies)
+	(goto-char (point-max))
+	(eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+  
+  (straight-use-package 'use-package)
+#+end_src
+*** Interface
+**** General
+#+name: interface
+#+begin_src elisp
+  (setq inhibit-startup-message t)
+  (setq visible-bell 1)
+  (setq inhibit-startup-screen t)
+  (setq initial-scratch-message ";; LANDBACK\n")
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (show-paren-mode 1)
+  (setq line-number-mode t)
+  (setq column-number-mode t)
+  (setq-default truncate-lines t)
+  (setq-default line-spacing 1)
+  (setq sentence-end-double-space nil)
+  (global-visual-line-mode t)
+  (setq echo-keystrokes 0.1)
+  (setq fill-column 68)
+  (setq mouse-wheel-scroll-amount '(1 ((shift) .1)))
+#+end_src
+**** Theme
+#+name: theme
+#+begin_src elisp
+  (use-package darktooth-theme
+    :straight t
+    :config
+    (load-theme 'darktooth t))
+#+end_src
+*** User
+#+name: user
+#+begin_src elisp
+  (setq user-mail-address "emsenn@emsenn.net")
+  (setq user-full-name "emsenn")
+#+end_src
+*** LISP Stuff
+**** Fennel
+#+name: fennel
+#+begin_src elisp
+  (use-package fennel-mode
+    :straight t
+    :mode "\\.fnl\\'"
+    :interpreter "fennel"
+    :custom
+    (inferior-lisp-program "/home/emsenn/.luarocks/bin/fennel"))
+#+end_src
+*** Org Stuff
+**** Org-Config
+#+name: org-config
+#+begin_src elisp
+  (setq org-directory "~/org")
+  (setq org-startup-folded 'fold)
+  (setq org-hide-block-startup 'hideblocks)
+  (setq org-catch-invisible-edits 'show-and-error)
+  (setq org-agenda-files (list "~/org"))
+  (setq org-export-with-section-numbers nil)
+  (setq org-export-with-smart-quotes nil)
+  (setq org-export-with-toc nil)
+  (setq org-html-htmlize-output-type 'nil)
+  (setq org-html-validation-link nil)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer 'LOGBOOK)
+  (setq org-image-actual-width '(400))
+#+end_src
+**** Org macros
+#+name: org-macros
+#+begin_src elisp
+  (setq org-export-global-macros
+	`(
+	  <<org-lib-macros>>
+	  ))
+#+end_src
+***** Library macros
+#+name: org-lib-macros
+#+begin_src elisp
+  ("nl" . "(eval \"\\n\")")
+  ("lib-item-table" . "- Title :: {{{property(lib-item-title)}}}{{{nl}}}- Author :: {{{property(lib-item-author)}}}{{{nl}}}- Brief :: {{{property(lib-item-brief)}}}{{{nl}}}- Topics :: {{{property(lib-item-topics)}}}{{{nl}}}")
+#+end_src
+**** Org capture templates
+#+name: org-capture-templates
+#+begin_src elisp
+  (setq org-capture-templates
+	`(
+	  <<log-entry-capture-template>>
+	  <<beading-capture-templates>>
+	  <<dg-references-capture-templates>>
+	  ))
+#+end_src
+***** Log capture template
+#+name: log-entry-capture-template
+#+begin_src elisp
+  ("l" "Log entry" entry
+   (file+datetree "~/org/per-PRIVATE/log.org")
+   "* %U\n\n%?\n" :clock-in t :clock-resume t :tree-type week)
+#+end_src
+***** TODO Add tweet link to tweets reference file
+***** TODO Add tweet contents to tweet in tweets reference file
+**** Org Keybindings
+#+name: org-keybindings
+#+begin_src elisp
+  ("C-c l" . org-store-link)
+  ("C-c a" . org-agenda)
+  ("C-c c" . org-capture)
+  ("C-c t" . org-toggle-link-display)
+  ("C-c C-q" . counsel-org-tag)
+  ("<f8>" . emacsen-org-capture-capture-at-point)
+#+end_src
+**** Org Babel
+#+name: org-babel
+#+begin_src elisp
+      (org-babel-do-load-languages 'org-babel-load-languages
+				   '((shell . t)))
+#+end_src
+**** Org Export HTML
+***** Org Export HTML Drawer
+#+name: org-export-html-drawer
+#+begin_src elisp
+      (defun emsenn-net-org-html-format-drawer (name contents)
+	(format "<section class=\"org-drawer\"> %s </section>" contents))
+#+end_src
+***** Org Export HTML Sitemap
+#+name: org-export-html-sitemap
+#+begin_src elisp
+      ;; from https://www.john2x.com/blog/blogging-with-orgmode.html
+      (defun emsenn-net-org-publish-format-sitemap (title sitemap)
+	(let ((posts (cdr sitemap)))
+	  (concat
+	   (format "#+title: %s\n" title)
+	   "#+author: emsenn\n"
+	   "#+email: emsenn@emsenn.net\n"
+	   "#+options: timestamp:nil date:nil\n"
+	   (format "#+date: %s\n" (format-time-string "[%Y-%m-%d %a %H:%M:%S]" (current-time)))
+	   (org-list-to-org (cons (car sitemap) posts)))))
+#+end_src
+***** Org Export HTML Library Sitemap
+#+name: org-export-html-sitemap
+#+begin_src elisp
+  ;; from https://www.john2x.com/blog/blogging-with-orgmode.html
+  (defun emsenn-net-org-publish-format-sitemap (title sitemap)
+    (let ((posts (cdr sitemap)))
+      (concat
+       (format "#+title: %s\n" title)
+       "#+author: emsenn\n"
+       "#+email: emsenn@emsenn.net\n"
+       "#+options: timestamp:nil date:nil\n"
+       "#+macro: nl (eval \"\\n\")"
+       "#+macro: lib-item-table - Title :: {{{property(lib-item-title)}}}{{{nl}}}- Author :: {{{property(lib-item-author)}}}{{{nl}}}- Brief :: {{{property(lib-item-brief)}}}{{{nl}}}- Topics :: {{{property(lib-item-topics)}}}"
+       "#+todo: LOANED | AVAIL"
+       (format "#+date: %s\n" (format-time-string "[%Y-%m-%d %a %H:%M:%S]" (current-time)))
+       (org-list-to-org (cons (car sitemap) posts)))))
+#+end_src
+***** Org Export HTML RSS
+#+name: org-export-html-rss
+#+begin_src elisp
+	(defun emsenn-net-org-rss-publish-to-rss (plist filename pub-dir)
+	  "Publish RSS with PLIST, only when FILENAME is 'rss.org'. PUB-DIR is when the output will be placed."
+	  (if (equal "rss.org" (file-name-nondirectory filename))
+	      (org-rss-publish-to-rss plist filename pub-dir)))
+  
+	(defun emsenn-net-format-rss-feed (title list)
+	  "Generate RSS feed, as a string. TITLE is the title of the RSS feed.  LIST is an internal representation for the files to include, as returned by `org-list-to-lisp'.  PROJECT is the current project."
+	  (concat "#+TITLE: " title "\n\n"
+		  (org-list-to-subtree list 1 '(:icount "" :istart ""))))
+	(defun emsenn-net-format-rss-feed-entry (entry style project)
+	  "Format ENTRY for the RSS feed. ENTRY is a file name.  STYLE is either 'list' or 'tree'. PROJECT is the current project."
+	  (cond ((not (directory-name-p entry))
+		 (let* ((file (org-publish--expand-file-name entry project))
+			(title (org-publish-find-title entry project))
+			(date (format-time-string "%Y-%m-%d" (org-publish-find-date entry project)))
+			(link (concat (file-name-sans-extension entry) ".html")))
+		   (with-temp-buffer
+		     (insert (format "* [[file:%s][%s]]\n" file title))
+		     (org-set-property "RSS_PERMALINK" link)
+		     (org-set-property "PUBDATE" date)
+		     (insert-file-contents file)
+		     (buffer-string))))
+		((eq style 'tree)
+		 ;; Return only last subdir.
+		 (file-name-nondirectory (directory-file-name entry)))
+		(t entry)))    
+#+end_src
+      :bind (
+	   
+**** Website Stuff
+***** emsenn.net Stuff
+****** emsenn.net Org Project Definitions
+#+name: emsenn-net-project
+#+begin_src elisp
+  <<emsenn-net>>
+  <<emsenn-net-all>>
+  <<emsenn-net-bul>>
+  <<emsenn-net-com>>
+  <<emsenn-net-fic>>
+  <<emsenn-net-lan>>
+  <<dg-references-org-mode-project>>
+  <<emsenn-net-src>>
+  <<emsenn-net-static>>
+#+end_src
+******* emsenn-net
+#+name: emsenn-net
+#+begin_src elisp
+    ("emsenn-website" :components ("emsenn-website-all" "emsenn-website-bul" "emsenn-website-com" "emsenn-website-fic" "emsenn-website-src" "dg-ref" "emsenn-website-static"))
+#+end_src
+
+#+name: emsenn-net-base-config
+#+begin_src elisp
+     :base-extension "org"
+     :publishing-function org-html-publish-to-html
+     :html-doctype "html5"
+     :html-html5-fancy t
+     :html-container "section"
+     :headline-levels 6
+     :recursive t
+     :html-divs ((preamble "section" "preamble")
+		 (content "main" "content")
+		 (postamble "section" "postamble"))
+     :publishing-function org-html-publish-to-html
+     :html-head-include-scripts nil
+     :html-head-include-default-style nil
+     :html-head ,emsenn-net-org-html-head
+     :exclude ,(regexp-opt '("README.org" "PRIVATE" "theindex" "DRAFT"))
+     :with-footnotes t
+     :with-date nil
+     :with-timestamps nil
+     :with-author nil
+   :html-format-drawer-function emsenn-net-org-html-format-drawer
+   :sitemap-function emsenn-net-org-publish-format-sitemap
+#+end_src
+******* emsenn-net-all
+#+name: emsenn-net-all
+#+begin_src elisp
+    ("emsenn-website-all"
+       <<emsenn-net-base-config>>
+       :html-preamble ,emsenn-net-org-html-preamble
+       :base-directory "~/org/"
+       :publishing-directory "~/emsenn-net"
+       :makeindex t)
+#+end_src
+******* emsenn-net-bul
+#+name: emsenn-net-bul
+#+begin_src elisp
+  ("emsenn-website-bul"
+   <<emsenn-net-base-config>>
+   :base-directory "~/org/bul/"
+   :publishing-directory "~/emsenn-net/bul"
+   :html-preamble ,emsenn-net-org-html-subdir-preamble
+   :auto-sitemap t
+   :sitemap-filename "index.org"
+   :sitemap-sort-files chronologically
+   :sitemap-title "emsenn's Bulletins")
+#+end_src
+******* emsenn-net-com
+#+name: emsenn-net-com
+#+begin_src elisp
+  ("emsenn-website-com"
+   <<emsenn-net-base-config>>
+  :base-directory "~/org/com/"
+  :publishing-directory "~/emsenn-net/com"
+  :html-preamble ,emsenn-net-org-html-subdir-preamble
+  :makeindex t
+  :auto-sitemap t
+  :sitemap-filename "index.org"
+  :sitemap-sort-files chronologically
+  :sitemap-title "emsenn's Communications")
+#+end_src
+******* emsenn-net-fic
+#+name: emsenn-net-fic
+#+begin_src elisp
+  ("emsenn-website-fic"
+   <<emsenn-net-base-config>>
+  :base-directory "~/org/fic/"
+  :publishing-directory "~/emsenn-net/fic"
+  :html-preamble ,emsenn-net-org-html-subdir-preamble)
+#+end_src
+******* emsenn-net-lan
+#+name: emsenn-net-lan
+#+begin_src elisp
+  ("emsenn-website-lan"
+   <<emsenn-net-base-config>>
+  :base-directory "~/org/lan/"
+  :publishing-directory "~/emsenn-net/lan"
+  :html-preamble ,emsenn-net-org-html-subdir-preamble)
+#+end_src
+******* emsenn-net-src
+#+name: emsenn-net-src
+#+begin_src elisp
+  ("emsenn-website-src"
+   <<emsenn-net-base-config>>
+  :base-directory "~/org/src/"
+  :publishing-directory "~/emsenn-net/src"
+  :html-preamble ,emsenn-net-org-html-subdir-preamble)
+#+end_src
+******* emsenn-net-static
+#+name: emsenn-net-static
+#+begin_src elisp
+    ("emsenn-website-static"
+   :base-directory "~/org/"
+   :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+   :publishing-directory "~/emsenn-net"
+   :recursive t
+   :publishing-function org-publish-attachment)
+#+end_src
+****** emsenn.net Copy
+******* emsenn.net Preamble Copy
+#+name: emsenn-net-preamble-copy
+#+begin_src elisp
+  "<p>This Website was cultivated as a public asset with <a href=\"https://ko-fi.com/emsenn\">support</a> from people like you. <strong><em>Thank you!</em></strong></p>
+  <details>
+    <summary>Click this sentence for information about my Website.</summary>
+    <p>Click each sentence below for more info:</p>
+      <ul>
+	<li><details>
+	  <summary>This website was created by Emacs and Org-mode</summary>
+	  <p>See <a href=\"https://emsenn.net/per/emacsen.html\">my Emacs configuration</a> to learn how.</p>
+	</details></li>
+	<li><details>
+	  <summary>It uses style to add information to the pages.</summary>
+	  <ul>
+	    <li><details>
+	    <summary>Click this sentence to see how links are styled:</summary>
+	    <table>
+	      <thead><tr>
+		<th scope=\"col\">Color</th>
+		<th scope=\"col\">Link type</th>
+	      </tr></thead>
+	      <tbody>
+		<tr><td class=\"link\">Sample</td>
+		  <td>Unvisited local resource</td></tr>
+		<tr><td class=\"visited-link\">Sample</td>
+		  <td>Visited local resource</td></tr>
+		<tr><td class=\"external-link\">Sample</td>
+		  <td>Unvisited external resource</td></tr>
+		<tr><td class=\"visited-external-link\">Sample</td>
+		  <td>Visited external resource</td></tr>
+	      </tbody>
+	    </table>
+	  </details></li>
+	</ul>
+      </details></li>
+    </ul>
+  </details>
+  "
+#+end_src
+****** emsenn.net HTML
+******* emsenn.net Preamble
+#+name: emsenn-net-preamble
+#+begin_src elisp
+  (setq emsenn-net-org-html-preamble
+	(concat "<a href=\"#content\" class=\"skip-to-content\">skip to content</a>"
+		"<section class=\"nav\"><strong>emsenn.net:</strong> "
+		"<a href=\"./index.html\">"
+		"Homepage</a> | "
+		"<a href=\"./bul/index.html\">"
+		"Bulletins</a> | "
+		"<a href=\"./mainindex.html\">"
+		"Main Index</a>"
+		<<emsenn-net-preamble-copy>>
+		"</section>"
+		))
+#+end_src
+******* emsenn.net Subdir Preamble
+#+name: emsenn-net-subdir-preamble
+#+begin_src elisp
+  (setq emsenn-net-org-html-subdir-preamble
+	(concat "<a href=\"#content\" class=\"skip-to-content\">skip to content</a>"
+		"<section class=\"nav\"><strong>emsenn.net:</strong> "
+		"<a href=\"../index.html\">"
+		"Homepage</a> | "
+		"<a href=\"../bul/index.html\">"
+		"Bulletins</a> | "
+		"<a href=\"../mainindex.html\">"
+		"Main Index</a>"
+		<<emsenn-net-preamble-copy>>
+		"</section>"
+		))
+#+end_src
+******* emsenn.net Subsubdir Preamble
+#+name: emsenn-net-subsubdir-preamble
+#+begin_src elisp
+  (setq emsenn-net-org-html-subsubdir-preamble
+	(concat "<a href=\"#content\" class=\"skip-to-content\">skip to content</a>"
+		"<section class=\"nav\"><strong>emsenn.net:</strong> "
+		"<a href=\"../../index.html\">"
+		"Homepage</a> | "
+		"<a href=\"../../bul/index.html\">"
+		"Bulletins</a> | "
+		"<a href=\"../../mainindex.html\">"
+		"Main Index</a>"
+		<<emsenn-net-preamble-copy>>
+		"</section>"
+		))
+#+end_src
+****** emsenn.net CSS
+#+name: emsenn-net-css
+#+begin_src elisp
+      (setq emsenn-net-org-html-head
+	    (concat "<style>
+	   @charset \"UTF-8\";
+	   
+	   :root {	
+       --body-font: sans-serif;
+	       --header-font: sans-serif;
+	       --code-font: monospace;
+	       --primary-color: #ffe;
+	       --primary-dim-color: #eed;
+	       --secondary-color: #312;
+	       --secondary-dim-color: #756;
+	       --link-color: #880;
+	       --link-hover-color: #aa2;
+	       --link-visited-color: #934;
+	       --link-visited-hover-color: #b56;
+	       --external-link-color: #008;
+	       --external-link-hover-color: #60b;
+	       --external-link-visited-color: #172;
+	       --external-link-visited-hover-color: #394;
+	   }
+	   @media(prefers-color-scheme:dark){
+	       :root {
+		  --body-font: sans-serif;
+		  --header-font: sans-serif;
+		  --code-font: monospace;
+		  --primary-color: #756;
+		  --primary-dim-color: #312;
+		  --secondary-color: #eed;
+		  --secondary-dim-color: #ffe;
+		  --link-color: #880;
+		  --link-hover-color: #aa2;
+		  --link-visited-color: #934;
+		  --link-visited-hover-color: #b56;
+	       }}
+	   body {
+	       position: relative;
+	       min-height: 100%;
+	       background-color: var(--primary-color);
+	       color: var(--secondary-color);
+	       margin: 0 auto;
+	       font-family: sans-serif;
+	   }
+	   main, #content {
+	       background-color: var(--primary-dim-color);
+	       border-left: 1.5em dotted var(--primary-color);
+	       padding: 1em;
+	   }
+	   header {
+	       border-bottom: 0.8em dotted var(--secondary-dim-color);
+	   }
+	   h1 { font-size: 2em; margin-bottom: 0; }
+	   h2 {
+	       border-bottom: 0.3em dotted var(--secondary-dim-color);
+	   }
+	   h2, h3, h4, h5, h6, p, table, ul, ol, .org-src-container {
+	       width: 60%;
+	   }
+	   aside {
+	       float: right;
+	       width: 35%;
+	   }
+	   aside p { width: 100%; }
+	   @media screen and (max-width:760px) {
+	       h2, h3, h4, h5, h6, p, table, ul, ol, .org-src-container {
+		  width: 90%;
+	       }
+	       aside {
+		  float: inherit;
+		  width: 90%;
+		  border-top: 0.2em dotted var(--secondary-dim-color);
+		  border-bottom: 0.2em dotted VAR(--secondary-dim-color);
+		  font-size: 0.8em;
+		    }
+	   }
+	   
+	   footer, #postamble, #preamble {
+	       padding: 0.5em;
+	   }
+	   table {
+	       border-collapse: collapse;
+	       border-spacing: 0;
+	       empty-cells: show;
+	       border: 0.1em solid #444;
+	   }
+	   thead { font-family: sans-serif; }
+	   th, td {
+	       padding: 0 0.3em;
+	       border: 0.01em solid #444;
+	   }
+	   img {
+	       max-width: 80vw;
+	       vertical-align: middle;
+	   }
+	   pre, .src {
+	       padding: 0.5em;
+	       border: 0.1em solid #444;
+	       white-space: pre-wrap;
+	       overflow-x: scroll;
+	       text-overflow: clip;
+	       scrollbar-width: none;
+	   }
+	   pre::-webkit-scrollbar, .src::-webkit-scrollbar {
+	       display: none;
+	   }
+	   
+	   
+	   dt {
+	       font-weight: normal;
+	       display: inline-block;
+	       border-bottom: 0.1rem dotted #444;
+	   }
+	   #text-index dt { border-bottom: none; }
+	   h2, h3, h4, h5, h6, h7, h8, h9, h10 {
+	       display: block;
+	       font-family: sans-serif;
+	       margin: 0.2em auto 0.5em 0;
+	   }
+	   a, .link {
+	       text-decoration: none;
+	       color: #880;
+	       display: inline;
+	       position: relative;
+	       border-bottom: 0.1rem dotted;
+	       line-height: 1.2;
+	       transition: border 0.3s;
+	   }
+	   a:hover {
+	       color: #aa2;
+	       outline-style: none;
+	       border-bottom: 0.1rem solid;
+	   }
+	   a:visited, .visited-link { color: #934; }
+	   a:visited:hover { color: #b56; }
+	   a:focus {
+	       outline-style: none;
+	       border-bottom: 0.1rem solid;
+	   }
+	   ::selection { background-color: #777; color: #eee; }
+	   a::selection { background-color: #ccc; }
+	   .org-todo {
+	       background-color: #ddd;
+	       color: #333;
+	       font-size: .8rem;
+	       float: right;
+	   }
+	   .org-src-container + .example {
+	       margin-left: 8em;
+	   }
+	   a[href^=\"https://\"]:not([href*=\"emsenn.net\"]):after, a[href^=\"https://\"]:not([href*=\"emsenn.net\"]):visited:after, .external-link:after, .visited-external-link:after { 
+	       content: \"^\";
+	       font-size: 0.5em;
+	       vertical-align: super;
+	   }
+	   a[href^=\"https://\"]:not([href*=\"emsenn.net\"]), .external-link {
+	       color: var(--external-link-color);
+	   }
+	   a[href^=\"https://\"]:not([href*=\"emsenn.net\"]):hover{ 
+	       color: var(--external-link-hover-color);
+	   }
+	   a[href^=\"https://\"]:not([href*=\"emsenn.net\"]):visited, .visited-external-link { 
+	       color: var(--external-link-visited-color);
+	   }
+	   a[href^=\"https://\"]:not([href*=\"emsenn.net\"]):visited:hover{ 
+	       color: var(--external-link-visited-hover-color);
+	   }
+	   blockquote {
+	       border: 0.1em dashed var(--secondary-dim-color);
+	       padding-left: 0.2em;
+	   }
+	   label.org-src-name {
+	       margin: 0 0 0 3em;
+	       font-family: sans-serif;
+	       font-size: 1rem;
+	       line-height: 0;
+	   }
+	   .skip-to-content {
+	       opacity: 0;
+	       position: absolute;
+	       left: 0.2em;
+	   }
+	   .skip-to-content:focus{
+	       opacity: 1;
+	       background-color: var(--secondary-dim-color);
+	       color: var(--primary-color);
+	   }
+	   ul { max-width: 85%; }
+    .footpara { display: inline; font-size: 0.8rem; }
+  </style>"))
+#+end_src
+*** Other Stuff
+**** TLS Bugfix
+#+name: tls-bugfix
+#+begin_src elisp
+  (if (and (version< emacs-version "26.3") (>= libgnutls-version 30600))
+      (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+#+end_src
+**** Save Behavior
+#+name: save-behavior
+#+begin_src elisp
+  (setq make-backup-files nil)
+#+end_src
+**** Executables Path
+#+name: exec-path
+#+begin_src elisp
+  (add-to-list 'exec-path "~/bin")
+#+end_src
+**** HTMLize
+#+name: htmlize
+#+begin_src elisp
+  (use-package htmlize :straight t)
+#+end_src
+** Full Source
+:PROPERTIES:
+:header-args: :noweb yes
+:END:
+
+#+name: emsenns-emacsen
+#+begin_src elisp :tangle init.el
+  <<tls-bugfix>>
+  <<package-management>>
+  <<interface>>
+  <<theme>>
+  <<user>>
+  
+  <<fennel>>
+  <<lua>>
+  
+  (use-package
+    org :straight t
+    :config
+    <<org-config>>
+    (setq org-export-global-macros
+	  `(
+	    <<general-org-macros>>
+	    ))
+    <<org-capture-templates>>
+    <<org-babel>>
+    <<org-export-html-drawer>>
+    <<org-export-html-sitemap>>
+    <<emsenn-net-preamble>>
+    <<emsenn-net-subdir-preamble>>
+    <<emsenn-net-subsubdir-preamble>>
+    <<emsenn-net-css>>
+    <<duckpond-encyclopedia-html-head>>
+    (setq org-publish-project-alist
+	  `(
+	    <<binding-generations-project>>
+	    <<emsenn-net-project>>
+	    <<duckpond-encyclopedia-project>>
+	    ))
+  
+    :bind (
+	   <<org-keybindings>>
+    ))
+  
+#+end_src
