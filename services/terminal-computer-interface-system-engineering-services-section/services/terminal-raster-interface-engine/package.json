@@ -3,6 +3,11 @@
   "version": "0.2.0",
   "type": "module",
   "description": "Raster terminal interface engine: RGBA framebuffers, Kitty and Sixel encoders, capability detection, diffed blits, and shared terminal lifecycle.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/computer-systems-engineering-services-section.git",
+    "directory": "services/computer-interface-system-services-section/services/terminal-computer-interface-system-engineering-services-section/services/terminal-raster-interface-engine"
+  },
   "keywords": [
     "terminal",
     "pixel",
