@@ -2,5 +2,9 @@
   "name": "@red-cup-engineering/computer-interface-system-services-section",
   "version": "0.1.0",
   "description": "Groups composed computer systems that mediate interaction with people, agents, programs, and resources.",
-  "dependencies": {}
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/red-cup-engineering/computer-interface-system-services-section.git"
+  }
 }
