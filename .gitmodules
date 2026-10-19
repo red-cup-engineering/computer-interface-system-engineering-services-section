@@ -1,0 +1,32 @@
+[submodule "abrash"]
+	path = services/graphical-computer-interface-system-services-sections/apps/abrash
+	url = https://github.com/red-cup-engineering/abrash.git
+	branch = main
+[submodule "openai-agent-tui"]
+	path = services/terminal-computer-interface-system-engineering-services-section/apps/openai-agent-tui
+	url = https://github.com/red-cup-engineering/openai-agent-tui.git
+	branch = main
+[submodule "wheatstone"]
+	path = services/terminal-computer-interface-system-engineering-services-section/apps/wheatstone
+	url = https://github.com/red-cup-engineering/wheatstone.git
+	branch = main
+[submodule "terminal-user-interface-engine"]
+	path = services/terminal-computer-interface-system-engineering-services-section/services/terminal-user-interface-engine
+	url = https://github.com/red-cup-engineering/terminal-user-interface-engine.git
+	branch = main
+[submodule "daleske"]
+	path = services/terminal-computer-interface-system-engineering-services-section/services/terminal-raster-interface-engine
+	url = https://github.com/red-cup-engineering/daleske.git
+	branch = main
+[submodule "eavt-terminal-projectors"]
+	path = services/terminal-computer-interface-system-engineering-services-section/services/terminal-eavt-projectors
+	url = https://github.com/red-cup-engineering/eavt-terminal-projectors.git
+	branch = main
+[submodule "arnold"]
+	path = services/terminal-computer-interface-system-engineering-services-section/services/terminal-cell-interface-engine
+	url = https://github.com/red-cup-engineering/arnold.git
+	branch = main
+[submodule "obsidian-services-section"]
+	path = services/obsidian-services-section
+	url = https://github.com/red-cup-engineering/obsidian-services-section.git
+	branch = main
