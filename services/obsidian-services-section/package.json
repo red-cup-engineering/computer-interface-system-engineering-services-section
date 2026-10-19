@@ -1,7 +1,0 @@
-{
-  "name": "@red-cup-engineering/obsidian-services-section",
-  "version": "0.1.0",
-  "type": "module",
-  "description": "Red Cup Engineering service section for obsidian vault.",
-  "license": "UNLICENSED"
-}
