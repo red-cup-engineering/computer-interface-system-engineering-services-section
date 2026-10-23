@@ -23,7 +23,7 @@
 	url = https://github.com/red-cup-engineering/eavt-terminal-projectors.git
 	branch = main
 [submodule "arnold"]
-	path = services/terminal-computer-interface-system-engineering-services-section/services/terminal-cell-interface-engine
+	path = services/terminal-computer-interface-system-engineering-services-section/apps/arnold
 	url = https://github.com/red-cup-engineering/arnold.git
 	branch = main
 [submodule "obsidian-services-section"]
