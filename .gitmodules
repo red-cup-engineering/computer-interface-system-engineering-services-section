@@ -30,3 +30,7 @@
 	path = services/obsidian-services-section
 	url = https://github.com/red-cup-engineering/obsidian-engineering-services-section.git
 	branch = main
+[submodule "services/graphical-computer-interface-system-services-sections/apps/tsander"]
+	path = services/graphical-computer-interface-system-services-sections/apps/tsander
+	url = https://github.com/red-cup-engineering/tsander.git
+	branch = main
